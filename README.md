@@ -14,12 +14,16 @@ Usage
 <html>
   <head>
     <title>input range polyfill</title>
+    <!--[if lt IE 11]>
     <link rel="stylesheet" type="text/css" href="./input-range-polyfill.css">
+    <![endif]-->
   </head>
   <body>
     <input type="range" value="50" style="width: 100px;"
            onchange="console.log('changed')"/>
+    <!--[if lt IE 11]>
     <script src="./input-range-polyfill.js"></script>
+    <![endif]-->
   </body>
 </html>
 ```
