@@ -15,7 +15,7 @@
         var thumb = document.createElement('div');
         var text = document.createElement('div');
         var min, max, step, value;
-        var pos;
+        var pos = 0;
         alt.className = 'input-range';
         alt.appendChild(slider);
         alt.appendChild(text);
@@ -25,6 +25,7 @@
         slider.appendChild(thumb);
         bar.className = 'input-range-bar';
         thumb.className = 'input-range-thumb';
+        thumb.addEventListener('mousedown', thumb_mousedown);
         text.style.setProperty('font-size', '0px');
         text.textContent = 'slider';
         function slide(clientX) {
@@ -34,10 +35,12 @@
             target.dispatchEvent(change);
         }
         function mousedown(e) {
-            pos = relativeX(e.clientX) - getThumbX();
             slide(e.clientX);
             document.addEventListener('mousemove', mousemove);
             document.addEventListener('mouseup', mouseup);
+        }
+        function thumb_mousedown(e) {
+            pos = relativeX(e.clientX) - getThumbX();
         }
         function mousemove(e) {
             slide(e.clientX);
@@ -46,6 +49,7 @@
             slide(e.clientX);
             document.removeEventListener('mousemove', mousemove);
             document.removeEventListener('mouseup', mouseup);
+            pos = 0;
         }
         function relativeX(absoluteX) {
             var rect = bar.getBoundingClientRect();
