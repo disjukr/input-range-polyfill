@@ -1,6 +1,4 @@
 (function () {
-    var change = document.createEvent('UIEvents');
-    change.initUIEvent('change', true, false, window, 1);
     function dontNeedPolyfill() {
         var check = document.createElement('input');
         check.setAttribute('type', 'range');
@@ -8,6 +6,8 @@
     }
     if (dontNeedPolyfill())
         return;
+    var change = document.createEvent('UIEvents');
+    change.initUIEvent('change', true, false, window, 1);
     function createAlternative(target) {
         var alt = document.createElement('div');
         var slider = document.createElement('div');
@@ -19,12 +19,12 @@
         alt.className = 'input-range';
         alt.appendChild(slider);
         alt.appendChild(text);
+        alt.addEventListener('mousedown', mousedown);
         slider.className = 'input-range-slider';
         slider.appendChild(bar);
         slider.appendChild(thumb);
         bar.className = 'input-range-bar';
         thumb.className = 'input-range-thumb';
-        thumb.addEventListener('mousedown', mousedown);
         text.style.setProperty('font-size', '0px');
         text.textContent = 'slider';
         function slide(clientX) {
