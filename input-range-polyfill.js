@@ -1,4 +1,6 @@
 (function () {
+    var change = document.createEvent('UIEvents');
+    change.initUIEvent('change', true, false, window, 1);
     function dontNeedPolyfill() {
         var check = document.createElement('input');
         check.setAttribute('type', 'range');
@@ -29,6 +31,7 @@
             setThumbX(relativeX(clientX) - pos);
             updateValue();
             updatePosition();
+            target.dispatchEvent(change);
         }
         function mousedown(e) {
             pos = relativeX(e.clientX) - getThumbX();

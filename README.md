@@ -13,12 +13,12 @@ Usage
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>input range polyfill</title>
     <link rel="stylesheet" type="text/css" href="./input-range-polyfill.css">
   </head>
   <body>
-    <input type="range" value="50" style="width: 100px;"/>
+    <input type="range" value="50" style="width: 100px;"
+           onchange="console.log('changed')"/>
     <script src="./input-range-polyfill.js"></script>
   </body>
 </html>
