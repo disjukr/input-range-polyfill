@@ -29,7 +29,7 @@
         text.style.setProperty('font-size', '0px');
         text.textContent = 'slider';
         function slide(clientX) {
-            setThumbX(relativeX(clientX) - pos);
+            setThumbX(relativeX(clientX) - pos - getThumbWidth() * 0.5);
             updateValue();
             updatePosition();
             target.dispatchEvent(change);
@@ -40,7 +40,7 @@
             document.addEventListener('mouseup', mouseup);
         }
         function thumb_mousedown(e) {
-            pos = relativeX(e.clientX) - getThumbX();
+            pos = relativeX(e.clientX) - getThumbX() + getThumbWidth() * 0.5;
         }
         function mousemove(e) {
             slide(e.clientX);
