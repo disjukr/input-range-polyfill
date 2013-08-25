@@ -40,7 +40,7 @@
             document.addEventListener('mouseup', mouseup);
         }
         function thumb_mousedown(e) {
-            pos = relativeX(e.clientX) - getThumbX() + getThumbWidth() * 0.5;
+            pos = relativeX(e.clientX) - getThumbX() - getThumbWidth() * 0.5;
         }
         function mousemove(e) {
             slide(e.clientX);
