@@ -95,8 +95,18 @@
             target.value = value;
         }
         function update() {
-            alt.setAttribute('style', target.getAttribute('style'));
-            alt.style.setProperty('display', '');
+            if (target.currentStyle) {
+                alt.style.setProperty('width', target.currentStyle.width);
+                alt.style.setProperty('margin', target.currentStyle.margin);
+            }
+            else if (window.getComputedStyle) {
+                alt.style.setProperty('width',
+                    window.getComputedStyle(target,null)
+                          .getPropertyValue('width'));
+                alt.style.setProperty('margin',
+                    window.getComputedStyle(target,null)
+                          .getPropertyValue('margin'));
+            }
             if (target.min == null || target.min === '')
                 min = 0;
             else
