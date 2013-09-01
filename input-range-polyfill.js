@@ -107,9 +107,9 @@
                 margin = window.getComputedStyle(target,null)
                                .getPropertyValue('margin');
             }
-            if (width)
+            if (width !== 'auto')
                 alt.style.setProperty('width', width);
-            if (margin)
+            if (margin !== 'auto')
                 alt.style.setProperty('margin', margin);
             if (target.min == null || target.min === '')
                 min = 0;
