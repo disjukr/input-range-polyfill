@@ -95,18 +95,22 @@
             target.value = value;
         }
         function update() {
+            var width;
+            var margin;
             if (target.currentStyle) {
-                alt.style.setProperty('width', target.currentStyle.width);
-                alt.style.setProperty('margin', target.currentStyle.margin);
+                width = target.currentStyle.width;
+                margin = target.currentStyle.margin;
             }
             else if (window.getComputedStyle) {
-                alt.style.setProperty('width',
-                    window.getComputedStyle(target,null)
-                          .getPropertyValue('width'));
-                alt.style.setProperty('margin',
-                    window.getComputedStyle(target,null)
-                          .getPropertyValue('margin'));
+                width = window.getComputedStyle(target,null)
+                              .getPropertyValue('width');
+                margin = window.getComputedStyle(target,null)
+                               .getPropertyValue('margin');
             }
+            if (width)
+                alt.style.setProperty('width', width);
+            if (margin)
+                alt.style.setProperty('margin', margin);
             if (target.min == null || target.min === '')
                 min = 0;
             else
